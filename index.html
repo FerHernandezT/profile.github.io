@@ -1,15 +1,182 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
+<html>
+    <head lang="en">
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="google" content="notranslate">
-        <title>Fernando HT</title>
+        
+        <title>Fer HT - Carta</title>
+
+        <link rel='stylesheet' href='./css/bootstrap.css' />
+        <link rel='stylesheet' href='./css/styles-letter.css' />
+
+
+        <script src="./js/jquery-3.6.4.min.js"></script>
+        <script language="javascript" src="./js/bootstrap.min.js"></script>
+        <script language="javascript" src="./js/html2canvas.min.js"></script>
     </head>
     <body>
-        <div id="wrapper" class="container-page">
-            <h1>Este es un test</h1>
+        
+        <div class="container-page">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid justify-content-center">
+                    <a class="navbar-brand" href="#">
+                        <img src="./images/mini_logo.png" alt="Fer HT" width="50">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </nav>
+            <div class="space-header" style="height: 2rem;"></div>
+
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+
+                    <div class="col-lg-6 mb-3">
+                        <div class="letter-view">
+                            <div class="title-letter" id="divTitle"></div>
+                            <div class="content-letter" id="divLetter">
+                                <textarea class="form-control" oninput="auto_grow(this)" placeholder="Escriba aquí"></textarea>
+                            </div>
+                            <div class="datos-letter" id="divDatos"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+
+                        <div class="mb-3">
+                            <label for="inptTitle" class="form-label">Titulo de la carta</label>
+                            <input type="text" maxlength="50" class="form-control inpt-letter" id="inptTitle" placeholder="Titulo" value="Mi primera carta">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inptTo" class="form-label">Para (Nombre o Apodo)</label>
+                            <input type="text" maxlength="50" class="form-control inpt-letter" id="inptTo" placeholder="Para" value="Mi amor Maria">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inptFrom" class="form-label">De (Nombre o Apodo)</label>
+                            <input type="text" maxlength="50" class="form-control inpt-letter" id="inptFrom" placeholder="De" value="F. Anonimo">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="inptTitle" class="form-label">Cambiar Fondo</label>
+                            <div>
+                                <input type="color" oninput="fillColorFondo(event)" class="form-control form-control-color" id="colorFondo" value="#fe6262" title="Selleccione el color">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inptTitle" class="form-label">Cambiar color de texto</label>
+                            <div>
+                                <input type="color" oninput="fillColorText(event)" class="form-control form-control-color" id="colorText" value="#020203" title="Selleccione el color">
+                            </div>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <br>
+                            <button class="btn btn-primary btn-download" type="button">Descargar Imagen</button>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12 preview-img">
+                    </div>
+                </div>
+
+            </div>
+            <script>
+
+                $(document).ready(function(e){
+                    $(this).find(".inpt-letter").each(function(i, elm){
+                        let idIpt = $(this).attr("id");
+                        let value = $(this).val();
+                        if( !value ) return;
+                        changeInput(idIpt, value, "onready");
+                    })
+
+                    changeColor($("#colorFondo").val());
+                    changeTextColor($("#colorText").val());
+                })
+
+                $(document).on("click", ".btn-download", function(e){
+                    console.log("ACA");
+                    html2canvas($('.letter-view'), {
+                        scale: 1,
+                        onrendered: function (canvas) {
+                            var img = canvas.toDataURL("image/png", 1);
+
+                            //console.log("img", img);
+                            $(".preview-img").empty().append(`<img src="${img}" class="img-fluid">`);
+
+                            var a = document.createElement("a"); //Create <a>
+                            a.href = img; //Image Base64 Goes here
+                            a.download = `carta-${new Date().getTime()}.png`; //File name Here
+                            a.click();
+                        }
+                    })
+                })
+
+                $(document).on("keyup", ".inpt-letter", function(e){
+                    let idIpt = $(this).attr("id");
+                    let value = $(this).val();
+                    if(e.keyCode == 8){
+                        //backspace trapped (elimina un caracter)
+                        changeInput(idIpt, value, "keyup");
+                    }
+                })
+
+                $(document).on("keypress", ".inpt-letter", function(e){
+                    if( e.keyCode == 13 ) return;
+                    let idIpt = $(this).attr("id");
+                    let value = $(this).val() + e.key;
+                    changeInput(idIpt, value, "keypress");
+                })
+
+                //$(document).on("change", "#colorFondo", function(e){ changeColor($(this).val()) })
+
+                function auto_grow(element) {
+                    element.style.height = "5px";
+                    element.style.height = (element.scrollHeight) + "px";
+                }
+                function fillColorFondo(ev){ changeColor(ev.target.value) };
+                function fillColorText(ev){ changeTextColor(ev.target.value) };
+
+                function changeColor(color){
+                    console.log("changeColor", color);
+                    $(".letter-view").css("background-color", color);
+                }
+                function changeTextColor(color){
+                    console.log("changeTextColor", color);
+                    $(".letter-view").css("color", color);
+                }
+
+                function changeInput(id, value, type) {
+                    //console.log("INPUT-ID", id, value, type);
+                    if( id === "inptTitle") changeTitle(value);
+                    if( id === "inptTo") changeTo(value);
+                    if( id === "inptFrom") changeFrom(value);
+                }
+
+                function changeTitle(title){ $("#divTitle").html(title) };
+                function changeTo(to){
+                    var find = $("#divDatos").find("#divTo").length;
+                    if( find ){
+                        if ( !to ) $("#divTo").remove();
+                        return $("#divTo").html(to);
+                    }
+                    $("#divDatos").prepend(`<div id="divTo">${to}</div>`);
+                };
+                function changeFrom(from){
+                    var find = $("#divDatos").find("#divFrom").length;
+                    if( find ){
+                        if ( !from ) $("#divFrom").remove();
+                        return $("#divFrom").html(from);
+                    }
+                    $("#divDatos").append(`<div id="divFrom">${from}</div>`);
+                    
+                };
+
+            </script>
         </div>
+
     </body>
 </html>
