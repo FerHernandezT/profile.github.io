@@ -1,7 +1,27 @@
+.rm-border{
+    border-color: transparent !important;
+}
+.form-control-color {
+    padding: 0;
+}
+.form-control-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: #ededed;
+}
+.letter-view-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
 .letter-view {
+    width: 60%;
     padding: 1.5rem;
-    border: 0.5px solid #bbb;
+    border: 0.5px solid none;
     border-radius: 8px;
+    display: inline-block;
 }
 
 .title-letter {
@@ -11,22 +31,32 @@
 }
 
 .content-letter {
-    padding: 1rem 2rem;
+    padding: 0.8rem;
 }
-.content-letter textarea {
-    min-height: 18rem;
-    resize: none;
-    background-color: transparent;
-    color: inherit;
 
+.content-letter .text-letter:focus {
+    border-color: #90d4e1;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(32, 168, 195, 0.25);
+}
+
+.content-letter .text-letter {
+    padding: 0.8rem;
+    min-height: 26rem;
+    resize: none;
+    color: inherit;
+    font-size: 90%;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    background-color: rgba(255, 255, 255, 0.5);
+    text-align: left;
+    
     overflow: hidden;
     width:100%;
 	box-sizing:border-box;
 	display:block;
 	max-width:100%;
 	line-height:1.5;
-	transition:box-shadow 0.5s ease;
-	box-shadow:0 4px 6px rgba(0,0,0,0.1);
 }
 
 .datos-letter {
@@ -40,5 +70,11 @@
 @media only screen and (max-device-width:480px){
     .content-letter {
         padding: 0.2rem 0.5rem;
+    }
+}
+
+@media only screen and (max-device-width:780px){
+    .letter-view {
+        width: 100%;
     }
 }

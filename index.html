@@ -27,64 +27,117 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://chat.whatsapp.com/G42OPnc46CbBF0jGu2xGWi" target="_blank">WhatsApp</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://t.me/grouphackerdesol" target="_blank">Telegram</a>
+                            </li>
+                        </ul>
+                        <div class="d-flex">
+                            <a class="btn btn-sm btn-outline-danger rounded-pill border-3" href="https://www.paypal.com/paypalme/fernandoaht" target="_blank">Dar Amor <img src="./images/heart.png" width="15" alt="heart"></a>
+                        </div>
+                    </div>
                 </div>
             </nav>
             <div class="space-header" style="height: 2rem;"></div>
 
             <div class="container-fluid">
-                <div class="row justify-content-center">
 
-                    <div class="col-lg-6 mb-3">
+                <div class="row justify-content-center">
+            
+                    <div class="col-lg-3">
+            
+                        <div class="mb-3">
+                            <label for="inptTitle" class="form-label">Titulo de la carta</label>
+                            <input type="text" maxlength="50" class="form-control inpt-letter" id="inptTitle" placeholder="Titulo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inptTo" class="form-label">Para (Nombre o Apodo)</label>
+                            <input type="text" maxlength="50" class="form-control inpt-letter" id="inptTo" placeholder="Para">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inptFrom" class="form-label">De (Nombre o Apodo)</label>
+                            <input type="text" maxlength="50" class="form-control inpt-letter" id="inptFrom" placeholder="De">
+                        </div>
+                    </div>
+            
+                    <div class="col-lg-5 mb-3 text-center">
                         <div class="letter-view">
                             <div class="title-letter" id="divTitle"></div>
                             <div class="content-letter" id="divLetter">
-                                <textarea class="form-control" oninput="auto_grow(this)" placeholder="Escriba aquí"></textarea>
+                                <div class="text-letter" oninput="auto_grow(this)" contenteditable="true" placeholder="Escriba aquí"></div>
                             </div>
                             <div class="datos-letter" id="divDatos"></div>
                         </div>
                     </div>
-
+            
                     <div class="col-lg-3">
-
-                        <div class="mb-3">
-                            <label for="inptTitle" class="form-label">Titulo de la carta</label>
-                            <input type="text" maxlength="50" class="form-control inpt-letter" id="inptTitle" placeholder="Titulo" value="Mi primera carta">
-                        </div>
-                        <div class="mb-3">
-                            <label for="inptTo" class="form-label">Para (Nombre o Apodo)</label>
-                            <input type="text" maxlength="50" class="form-control inpt-letter" id="inptTo" placeholder="Para" value="Mi amor Maria">
-                        </div>
-                        <div class="mb-3">
-                            <label for="inptFrom" class="form-label">De (Nombre o Apodo)</label>
-                            <input type="text" maxlength="50" class="form-control inpt-letter" id="inptFrom" placeholder="De" value="F. Anonimo">
-                        </div>
-
+            
                         <div class="mb-3">
                             <label for="inptTitle" class="form-label">Cambiar Fondo</label>
+                            <div class="d-flex flex-wrap">
+                                <input type="color" oninput="fillColorFondo(event)" class="form-control form-control-color m-1" id="colorFondo" value="#fe6262" title="Selleccione el color">
+
+                                <div style="background-image: url('./images/fondos/18879858_v1025-0172c.jpg');" data-img="18879858_v1025-0172c.jpg" class="form-control form-control-color m-1 form-control-image" ></div>
+                    
+                                <div style="background-image: url('./images/fondos/2147719015.jpg');" data-img="2147719015.jpg" class="form-control form-control-color m-1 form-control-image" ></div>
+                            
+                                <div style="background-image: url('./images/fondos/2150915526.jpg');" data-img="2150915526.jpg" class="form-control form-control-color m-1 form-control-image" ></div>
+                            
+                                <div style="background-image: url('./images/fondos/28428049_job297-ploy-03c-pink-01.jpg');" data-img="28428049_job297-ploy-03c-pink-01.jpg" class="form-control form-control-color m-1 form-control-image" ></div>
+                            
+                                <div style="background-image: url('./images/fondos/job297-ploy-17c-pink-01.jpg');" data-img="job297-ploy-17c-pink-01.jpg" class="form-control form-control-color m-1 form-control-image" ></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
                             <div>
-                                <input type="color" oninput="fillColorFondo(event)" class="form-control form-control-color" id="colorFondo" value="#fe6262" title="Selleccione el color">
+                                <label for="inptTitle" class="form-label">Fondo de texto</label>
+                                <input type="color" oninput="fillColorFondoText(event)" class="form-control form-control-color" id="colorFondoText" value="#ffffff" title="Seleccione el color">
+                            </div>
+                            <div>
+                                <label for="inptTitle" class="form-label">Transparencia</label>
+                                <input type="range" oninput="fillColorRange(event)" class="form-range" min="0" max="1" step="0.1" value="0.5">
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="inptTitle" class="form-label">Cambiar color de texto</label>
                             <div>
-                                <input type="color" oninput="fillColorText(event)" class="form-control form-control-color" id="colorText" value="#020203" title="Selleccione el color">
+                                <input type="color" oninput="fillColorText(event)" class="form-control form-control-color" id="colorText" value="#020203" title="Seleccione el color">
                             </div>
                         </div>
-                        <div class="mb-3 text-center">
-                            <br>
-                            <button class="btn btn-primary btn-download" type="button">Descargar Imagen</button>
+                        <br>
+                        <div class="mb-3 d-grid gap-2">
+                            <button class="btn btn-outline-primary btn-automatico my-2" type="button">Generar carta</button>
+                            <button class="btn btn-success btn-download my-2" type="button">Descargar Imagen</button>
                         </div>
                     </div>
-
-
-                    <div class="col-md-12 preview-img">
+            
+            
+                    <div class="col-md-3 preview-img">
                     </div>
                 </div>
-
+            
             </div>
             <script>
-
+                var frasesAutomaticas = [
+                    "Me quedo contigo, porque aún en nuestros malos ratos, sigues siendo una de las mejores cosas que podría pasarme.",
+                    "No puedo prometerte la luna y las estrellas. Pero puedo prometerte unas cervezas juntos y mirarlas todas las veces que tú quieras.",
+                    "El amor verdadero es cuando alguien acepta tu pasado sin juzgarte, tu presente sin cambiarte y tu futuro sin limitarte.",
+                    "Te quiero y te querré siempre, hasta después de la muerte, porque te quiero con toda mi alma, y el alma nunca muere.",
+                    "Tardé un minuto en conocerte, pero me tomará toda una vida poder llegar a olvidarte",
+                    "Eres la forma más bonita que ha tenido la vida de enseñarme que vale la pena arriesgarse a amar.",
+                    "No hay nada más bonito que una historia que empieza con una casualidad.",
+                    "Entrégame el tiempo que te sobre, y lo gastaré en hacerte la persona más feliz del planeta.",
+                    "Aquí estaba yo… Pensando que la magia no existía y ahora es todo lo que veo cuando te miro",
+                    "Hoy es un nuevo día. Incluso si te equivocaste ayer, lo puedes hacer bien hoy"
+                ];
+                document.querySelector('[contenteditable]').addEventListener('paste', function (event) {
+                    event.preventDefault();
+                    document.execCommand('inserttext', false, event.clipboardData.getData('text/plain'));
+                });
                 $(document).ready(function(e){
                     $(this).find(".inpt-letter").each(function(i, elm){
                         let idIpt = $(this).attr("id");
@@ -92,29 +145,46 @@
                         if( !value ) return;
                         changeInput(idIpt, value, "onready");
                     })
-
+            
                     changeColor($("#colorFondo").val());
                     changeTextColor($("#colorText").val());
                 })
-
+            
+                $(document).on("click", ".btn-automatico", function(e){
+                    var frase = frasesAutomaticas[Math.floor(Math.random()*frasesAutomaticas.length)]
+                    $(".text-letter").empty().text(frase);
+                })
+            
                 $(document).on("click", ".btn-download", function(e){
                     console.log("ACA");
-                    html2canvas($('.letter-view'), {
-                        scale: 1,
-                        onrendered: function (canvas) {
-                            var img = canvas.toDataURL("image/png", 1);
-
-                            //console.log("img", img);
-                            //$(".preview-img").empty().append(`<img src="${img}" class="img-fluid">`);
-
-                            var a = document.createElement("a"); //Create <a>
-                            a.href = img; //Image Base64 Goes here
-                            a.download = `carta-${new Date().getTime()}.png`; //File name Here
-                            a.click();
-                        }
+                    $(".text-letter").addClass("rm-border");
+                    var range = $("input[type=range]").val();
+                    console.log("range", range)
+                    //if( range == 0 ) $(".text-letter").css('background-color', '');
+                    html2canvas($('.letter-view').get(0), {
+                        scale: 2,
+                    }).then(function(canvas){
+                        $(".text-letter").removeClass("rm-border");
+                        var img = canvas.toDataURL("image/png", 1);
+                        //console.log("img", img);
+                        //$(".preview-img").empty().append(`<img src="${img}" class="img-fluid">`);
+            
+                        var a = document.createElement("a"); //Create <a>
+                        a.href = img; //Image Base64 Goes here
+                        a.download = `carta-${new Date().getTime()}.png`; //File name Here
+                        a.click();
+                    }).catch(err => {
+                        console.log("err", err);
                     })
                 })
-
+            
+                $(document).on("click", ".form-control-image", function(e){
+                    var imgF = $(this).attr("data-img");
+                    console.log("PUT", imgF);
+                    $(".letter-view").css("background-image", `url('./images/fondos/${imgF}')`).css('background-color', '').addClass("letter-view-image");
+                    
+                })
+            
                 $(document).on("keyup", ".inpt-letter", function(e){
                     let idIpt = $(this).attr("id");
                     let value = $(this).val();
@@ -123,39 +193,52 @@
                         changeInput(idIpt, value, "keyup");
                     }
                 })
-
+            
                 $(document).on("keypress", ".inpt-letter", function(e){
                     if( e.keyCode == 13 ) return;
                     let idIpt = $(this).attr("id");
                     let value = $(this).val() + e.key;
                     changeInput(idIpt, value, "keypress");
                 })
-
+            
                 //$(document).on("change", "#colorFondo", function(e){ changeColor($(this).val()) })
-
+            
                 function auto_grow(element) {
                     element.style.height = "5px";
                     element.style.height = (element.scrollHeight) + "px";
                 }
                 function fillColorFondo(ev){ changeColor(ev.target.value) };
                 function fillColorText(ev){ changeTextColor(ev.target.value) };
-
+                function fillColorFondoText(ev){ changeFondoTextColor(ev.target.value) };
+                function fillColorRange(ev){ changeFondoTextTransparencia(ev.target.value) }
+            
                 function changeColor(color){
                     console.log("changeColor", color);
-                    $(".letter-view").css("background-color", color);
+                    $(".letter-view").css("background-color", color).css('background-image', 'none').removeClass("letter-view-image");
+                }
+                function changeFondoTextColor(color){
+                    console.log("changeTextColor", color);
+                    var opacity = $("input[type=range]").val();
+                    var rgbaCol = 'rgba(' + parseInt(color.slice(-6, -4), 16) + ',' + parseInt(color.slice(-4, -2), 16) + ',' + parseInt(color.slice(-2), 16) + ',' + opacity + ')';
+                    $(".text-letter").css("background-color", rgbaCol);
+                }
+                function changeFondoTextTransparencia(opacity){
+                    var color = $("#colorFondoText").val();
+                    var rgbaCol = 'rgba(' + parseInt(color.slice(-6, -4), 16) + ',' + parseInt(color.slice(-4, -2), 16) + ',' + parseInt(color.slice(-2), 16) + ',' + opacity + ')';
+                    $(".text-letter").css("background-color", rgbaCol);
                 }
                 function changeTextColor(color){
                     console.log("changeTextColor", color);
                     $(".letter-view").css("color", color);
                 }
-
+            
                 function changeInput(id, value, type) {
                     //console.log("INPUT-ID", id, value, type);
                     if( id === "inptTitle") changeTitle(value);
                     if( id === "inptTo") changeTo(value);
                     if( id === "inptFrom") changeFrom(value);
                 }
-
+            
                 function changeTitle(title){ $("#divTitle").html(title) };
                 function changeTo(to){
                     var find = $("#divDatos").find("#divTo").length;
