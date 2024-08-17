@@ -91,6 +91,11 @@
                             
                                 <div style="background-image: url('./images/fondos/job297-ploy-17c-pink-01.jpg');" data-img="job297-ploy-17c-pink-01.jpg" class="form-control form-control-color m-1 form-control-image" ></div>
                             </div>
+                            <br>
+                            <input class="form-control" type="file" id="formFile" accept="image/*">
+                            <div class="form-text">
+                                Agrega una imagen desde tu galeria.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <div>
@@ -122,6 +127,7 @@
             
             </div>
             <script>
+    var _URL = window.URL || window.webkitURL;
                 var frasesAutomaticas = [
                     "Me quedo contigo, porque aún en nuestros malos ratos, sigues siendo una de las mejores cosas que podría pasarme.",
                     "No puedo prometerte la luna y las estrellas. Pero puedo prometerte unas cervezas juntos y mirarlas todas las veces que tú quieras.",
@@ -162,6 +168,7 @@
                     console.log("range", range)
                     //if( range == 0 ) $(".text-letter").css('background-color', '');
                     html2canvas($('.letter-view').get(0), {
+                        backgroundColor:null,
                         scale: 2,
                     }).then(function(canvas){
                         $(".text-letter").removeClass("rm-border");
@@ -257,6 +264,15 @@
                     $("#divDatos").append(`<div id="divFrom">${from}</div>`);
                     
                 };
+                $(document).on("change", "#formFile", function(e){
+                    console.log("agrego imagen");
+                    var fileUpload = $(this).get(0);
+                    var file = fileUpload.files[0];
+                    if( file ){
+                        var srcImg = _URL.createObjectURL(file);
+                        $(".letter-view").css("background-image", `url('${srcImg}')`).css('background-color', '').addClass("letter-view-image");
+                    }
+                })
 
             </script>
         </div>
